@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: cadurik
+  api_key: '414389578758551'
+  api_secret: _XNrY9vVfNFWH-ep6-WOKXYHKxM
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: cadurik
+  api_key: '414389578758551'
+  api_secret: _XNrY9vVfNFWH-ep6-WOKXYHKxM
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: cadurik
+  api_key: '414389578758551'
+  api_secret: _XNrY9vVfNFWH-ep6-WOKXYHKxM
+  enhance_image_tag: true
+  static_image_support: false

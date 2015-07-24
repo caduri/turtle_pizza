@@ -1,0 +1,20 @@
+.page-header
+  %h1 Toppings
+
+.table-responsive
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th Name
+        %th Action
+    %tbody
+      - Topping.all.each do |topping|
+        %tr
+          %td
+            = topping.name
+          %td
+            = link_to edit_admin_topping_url(topping._id) do
+              %i.glyphicon.glyphicon-edit
+
+.row
+  = link_to "Add Doe Kind", new_admin_topping_url, class: "btn btn-success"

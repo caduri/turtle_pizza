@@ -1,0 +1,14 @@
+.row.list-group#pizzas
+  - Pizza.all.each do |pizza|
+    .item.col-xs-4.col-lg-4
+      .thumbnail
+        = cl_image_tag pizza.images.where(:order_num => 1)[0].picture, :width => 200, :height => 200
+        .caption
+          %h4.group.inner.list-group-item-heading= pizza.name
+          %p.group.inner.list-group-item-text= pizza.toppings[0..2].collect(&:name).join(', ')
+          .row
+            .col-xs-12.col-md-6
+              = link_to "edit", edit_admin_pizza_url(pizza._id), class: "btn btn-success"
+              = link_to "Delete", admin_pizza_url(pizza._id), class: "btn btn-success", data: { method: :delete }
+.row
+  = link_to "Add Pizza", new_admin_pizza_url, class: "btn btn-success"

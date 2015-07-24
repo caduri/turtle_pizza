@@ -1,0 +1,6 @@
+.row
+  = simple_form_for @pizza, url: admin_pizza_url, html: {class: 'form-vertical' } do |f|
+    = f.input :name
+    = f.association :doe_kind, collection: DoeKind.all, :include_blank => false
+    = f.association :toppings, as: :check_boxes, collection: Topping.all
+    = f.button :submit, "Edit", class: "btn btn-success"

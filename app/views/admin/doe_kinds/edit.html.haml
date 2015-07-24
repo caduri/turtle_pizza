@@ -1,0 +1,4 @@
+.row
+  = simple_form_for @doe_kind, url: admin_doe_kind_url, html: {class: 'form-vertical' } do |f|
+    = f.input :name
+    = f.button :submit, "Update", class: "btn btn-success"

@@ -1,0 +1,4 @@
+.row
+  = simple_form_for @topping, url: admin_topping_url, html: {class: 'form-vertical' } do |f|
+    = f.input :name
+    = f.button :submit, "Update", class: "btn btn-success"

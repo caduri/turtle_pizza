@@ -1,0 +1,11 @@
+.row#pizza
+  .item
+    - @order.pizza.images.all.each do |image|
+      .col-xs-2.col-lg-2
+        = cl_image_tag image.picture, :width => 200, :height => 200
+.row
+  = simple_form_for @order, html: {class: 'form-vertical' } do |f|
+    %h3= @order.pizza.name
+    = f.association :doe_kind, collection: DoeKind.all, :include_blank => false
+    = f.association :toppings, as: :check_boxes, collection: Topping.all
+    = f.button :submit, "Order", class: "btn btn-success"

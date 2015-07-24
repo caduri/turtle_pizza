@@ -1,0 +1,12 @@
+.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      = link_to "Turtle", root_url, class: "navbar-brand"
+    .collapse.navbar-collapse#bs-example-navbar-collapse-1
+      %ul.nav.navbar-nav
+        - if admin_signed_in?
+          %li= link_to "Manage Pizzas", admin_pizzas_url
+          %li= link_to "Manage Doe Kind", admin_doe_kinds_url
+          %li= link_to "Manage Toppings", admin_toppings_url
+        - else
+          %li= link_to "Admin", new_admin_session_url

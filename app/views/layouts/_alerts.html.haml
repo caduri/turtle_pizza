@@ -1,0 +1,6 @@
+- flash.each do |key, value|
+  - class_name = key == :notice ? "success" : "error"
+  .alert{ :class => "alert-#{class_name}", :role => "alert" }
+    %button.close{ :data => { :dismiss => "alert" } } x
+    %strong
+      = value

@@ -1,0 +1,20 @@
+.page-header
+  %h1 Doe Kind
+
+.table-responsive
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th Name
+        %th Action
+    %tbody
+      - DoeKind.all.each do |doe_kind|
+        %tr
+          %td
+            = doe_kind.name
+          %td
+            = link_to edit_admin_doe_kind_url(doe_kind._id) do
+              %i.glyphicon.glyphicon-edit
+
+.row
+  = link_to "Add Doe Kind", new_admin_doe_kind_url, class: "btn btn-success"
