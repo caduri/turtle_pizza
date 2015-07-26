@@ -12,11 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require cloudinary
-//= require cocoon
 //= require jquery-ui
+//= require cocoon
+//= require cloudinary
 //= require_tree .
 
 jQuery.fn.swap = function(b){
@@ -31,7 +32,6 @@ jQuery.fn.swap = function(b){
 };
 
 $(document).ready(function(e){
-
   $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
     var ul = $('form').find('ul')
     var lis = ul.find('li');
