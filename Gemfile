@@ -54,3 +54,4 @@ gem "haml-rails"
 gem "simple_form"
 gem 'devise', '~> 3.4.0'
 gem "cocoon"
+gem 'rails_12factor', group: :production
