@@ -1,6 +1,6 @@
 .row#pizza
   .item
-    - @order.pizza.images.all.each do |image|
+    - @order.pizza.images.sort_by(&:order_num).each do |image|
       .col-xs-2.col-lg-2
         = cl_image_tag image.picture, :width => 200, :height => 200
 .row

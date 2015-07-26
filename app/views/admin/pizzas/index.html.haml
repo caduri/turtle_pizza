@@ -2,7 +2,7 @@
   - Pizza.all.each do |pizza|
     .item.col-xs-4.col-lg-4
       .thumbnail
-        = cl_image_tag pizza.images.where(:order_num => 1)[0].picture, :width => 200, :height => 200
+        = cl_image_tag pizza.images.sort_by(&:order_num)[0].picture, :width => 200, :height => 200
         .caption
           %h4.group.inner.list-group-item-heading= pizza.name
           %p.group.inner.list-group-item-text= pizza.toppings[0..2].collect(&:name).join(', ')

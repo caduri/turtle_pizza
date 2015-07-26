@@ -1,6 +1,16 @@
+= cloudinary_js_config
 .row
   = simple_form_for @pizza, url: admin_pizzas_url, html: {class: 'form-vertical' } do |f|
     = f.input :name
     = f.association :doe_kind, collection: DoeKind.all, :include_blank => false
     = f.association :toppings, as: :check_boxes, collection: Topping.all
-    = f.button :submit, "Add", class: "btn btn-success"
+    .form-actions.row
+      = f.button :submit, "Add", class: "btn btn-success"
+    %ul.thumbnails
+      .row{:id => "pizza_upload"}
+        = cl_image_upload :picture, :html => { :multiple => true }
+      = f.simple_fields_for :images, @pizza.images.sort_by(&:order_num) do |image|
+        %li.col-xs-6.col-md-3{:id => "#{image.object.order_num}"}
+          .thumbnail
+            = image.input :order_num, as: :hidden
+            = cl_image_tag image.object.picture, :width => 200, :height => 200

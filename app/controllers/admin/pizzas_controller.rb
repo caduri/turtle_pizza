@@ -11,8 +11,12 @@ class Admin::PizzasController < AdminController
     @pizza.name = params[:pizza][:name]
     @pizza.doe_kind_id = params[:pizza][:doe_kind_id]
     @pizza.topping_ids = params[:pizza][:topping_ids]
-    @pizza.save
-    @pizza.images.create([{order_num: 1, remote_picture_url: 'app/assets/images/pizza1.jpeg'}, {order_num: 2, remote_picture_url: 'app/assets/images/pizza2.jpeg'}, {order_num: 3, remote_picture_url: 'app/assets/images/pizza3.jpeg'}])
+    @pizza.save!
+    params[:pizza][:images_attributes].each do |id, image|
+      new_image = Image.new({order_num: image['order_num'], picture: image['picture']})
+      @pizza.images << new_image
+    end
+    @pizza.save!
     redirect_to :action => "index", notice: "The new pizza has been added"
   end
 
@@ -22,13 +26,28 @@ class Admin::PizzasController < AdminController
 
   def update
     @pizza = Pizza.find(params[:id])
-    @pizza.update_attributes(params[:pizza])
-    redirect_to :action => "index", notics: "The pizza has been updated"
+    # @pizza.update_attributes(params[:pizza])
+    @pizza.name = params[:pizza][:name]
+    @pizza.doe_kind_id = params[:pizza][:doe_kind_id]
+    @pizza.topping_ids = params[:pizza][:topping_ids]
+    params[:pizza][:images_attributes].each do |id, image|
+      if image['id'].present?
+        curr_image = @pizza.images.find(image['id'])
+        curr_image.order_num = image['order_num']
+      end
+
+      if image['picture'].present?
+        new_image = Image.new({order_num: image['order_num'], picture: image['picture']})
+        @pizza.images << new_image
+      end
+    end
+    @pizza.save!
+    redirect_to :action => "index", notice: "The pizza has been updated"
   end
 
   def destroy
     @pizza = Pizza.find(params[:id])
     @pizza.destroy
-    redirect_to :action => "index", notics: "The pizza has been deleted"
+    redirect_to :action => "index", notice: "The pizza has been deleted"
   end
 end

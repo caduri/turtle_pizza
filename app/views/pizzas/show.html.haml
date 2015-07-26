@@ -1,7 +1,7 @@
 .row#pizza
   .item.col-xs-4.col-lg-4.list-group-item
     .thumbnail
-      - @pizza.images.all.each do |image|
+      - @pizza.images.sort_by(&:order_num).each do |image|
         = cl_image_tag image.picture, :width => 200, :height => 200
       .caption
         %h4.group.inner.list-group-item-heading= @pizza.name
